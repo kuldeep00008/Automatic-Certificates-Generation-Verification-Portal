@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i' %}">
+    <link rel="stylesheet" href="{% static 'css/Footer-Dark.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css%'">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vanilla-zoom.min.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/random.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top clean-navbar" style="color: var(--bs-black);background: var(--bs-warning);">
+        <div class="container"><img data-bss-disabled-mobile="true" class="swing animated" src="{% static 'img/certificate.png' %}" width="100px" height="100px"><a class="navbar-brand font-monospace logo" data-bss-hover-animate="pulse" href="#" style="border-color: var(--bs-blue);color: var(--bs-blue);"><strong>CertiGen</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link active" style="color: var(--bs-blue);" href="#">Hello &nbsp;&nbsp;&nbsp;{{user.username}}</a></li>
+                    {% endif %}
+                    
+                    <li class="nav-item"><a class="nav-link active" style="color: var(--bs-blue);" href="{% url 'home' %}">Home</a></li>
+                   
+                   
+                   
+                    
+
+                   {% if not request.user.is_authenticated %}
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'logUser' %}" style="color: var(--bs-blue);">Login</a></li>
+                    
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'registration' %}" style="color: var(--bs-blue);">Register</a></li>
+                    {% else %}
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'logoutView' %}" style="color: var(--bs-blue);">logout</a></li>
+
+                    {% endif %}
+                     <li class="nav-item"><a class="nav-link " href="{% url 'generate' %}" style="color: var(--bs-blue);">Generate</a></li> 
+                    
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page landing-page">
+
+    
+        <section class="clean-block clean-hero" style= " background-image:url(&quot;{% static 'img/tech/image4.jpg' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+            <div class="text">
+                <h2><strong>Certificate Generator</strong></h2>
+                <p>Generate certificates by uploading your excel sheet and you can verify your generated certificates .</p>
+            </div>
+        </section>
+        <section class="clean-block clean-info dark">
+            <div class="container">
+                <!--<div class="block-heading">
+                    <h2 class="text-info"><strong>Excel sheet format</strong></h2>
+                    <p>Text here</p>-->
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </main>
+    <footer class="footer-light bg-warning">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Teams</h3>
+                    <ul>
+                        <li>Kuldeep Raheja</li>
+                        <li>Velaga Sai Prudhvi</li>
+                        <li>Indeti Venkata Krishna</li>
+                        <li>Pratiksha Pawar</li>
+                        <li>Vineeth Kumar Pendyala</li>
+
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><br>This project is submitted to Regex software services<br><br></li>
+                        <li>Under the Guidance of Akanska Naik</li>
+
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Project Name</h3>
+                    <p><br><strong>Automatic Certificate Generation and verification</strong><br><br><br></p>
+                </div>
+            </div>
+            <p class="copyright">CertiGen© 2021</p>
+        </div>
+    </footer>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bs-init.js' %}"></script>
+    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'js/vanilla-zoom.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

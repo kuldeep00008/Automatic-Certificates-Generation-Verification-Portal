@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Slider - Brand</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i' %}">
+    <link rel="stylesheet" href="{% static 'css/Footer-Dark.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/vanilla-zoom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/random.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top clean-navbar" style="color: var(--bs-blue);background: var(--bs-warning);">
+        <div class="container"><img data-bss-disabled-mobile="true" class="swing animated" src="{% static 'img/certificate.png' %}" width="100px" height="100px"><a class="navbar-brand font-monospace logo" data-bss-hover-animate="pulse" href="#" style="border-color: var(--bs-blue);color: var(--bs-blue);"><strong>CertiGen</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+
+                  {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link active" style="color: var(--bs-blue);" href="#">Hello &nbsp;&nbsp;&nbsp;{{user.username}}</a></li>
+                    {% endif %}
+                   <li class="nav-item"><a class="nav-link active" style="color: var(--bs-blue);" href="{% url 'home' %}">Home</a></li>
+                   
+                   
+                    
+                    
+
+                   {% if not request.user.is_authenticated %}
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'logUser' %}" style="color: var(--bs-blue);">Login</a></li>
+                    
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'registration' %}" style="color: var(--bs-blue);">Register</a></li>
+                    {% else %}
+                    
+                    <li class="nav-item"><a class="nav-link " href="{% url 'logoutView' %}" style="color: var(--bs-blue);">logout</a></li>
+
+                    {% endif %}
+                     <li class="nav-item"><a class="nav-link " href="{% url 'generate' %}" style="color: var(--bs-blue);">Generate</a></li> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page">
+        
+                 <form action="generate" method="post" enctype="multipart/form-data" id="formSubmit" class="formSubmit">
+  {% csrf_token %}
+ 
+
+<input type="file" id="file" name="file" hidden/>
+<label for="file" class="upload1" id="fileChange" style="transition:0.3s">Choose file
+
+</label>
+<input type="submit" id="submit-button"hidden/>
+<label for="submit-button" class="upload2">Submit</label>
+
+
+
+</form>
+
+
+
+
+<script>
+
+document.getElementById('file').addEventListener('change', function(){
+  document.getElementById('fileChange').textContent = this.files[0].name;
+  document.getElementById('fileChange').style.border = '3px solid green';
+})
+
+
+{% if not request.user.is_authenticated %}
+const form = document.getElementById('formSubmit');
+form.addEventListener('submit', (event) => {
+event.preventDefault();
+alert("you need to login to upload files")
+fileInput.value = '';
+
+});
+{% else %}
+const form = document.getElementById('formSubmit');
+let something;
+form.addEventListener('submit', (event) => {
+ var fileInput = document.getElementById('file');
+var filePath = fileInput.value;
+ var allowedExtensions = /(\.xlsx)$/i;
+filess = document.getElementById("file");
+const fileSize = filess.files[0];
+
+if (!allowedExtensions.exec(filePath)) {
+  event.preventDefault();
+alert('Invalid file type');
+fileInput.value = '';
+}
+else if (fileSize.size > 2097152) // 2 MiB for bytes = 2097152.
+{
+  alert("File size must under 2MiB!");
+  fileInput.value = '';
+  return;
+}else{
+  alert("file has been succesfully submitted");
+  form.submit();
+}
+
+
+});
+
+
+{% endif %}
+
+
+</script>
+<!--
+<div class="mt-5 ml-5 mr-5 progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div>
+</div>-->
+    </main>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bs-init.js' %}"></script>
+    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'js/vanilla-zoom.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

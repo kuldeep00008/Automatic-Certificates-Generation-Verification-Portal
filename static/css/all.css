@@ -1,0 +1,43 @@
+
+.formSubmit{
+ position:absolute;
+ top:50%;
+ left:35%;
+ 
+}
+
+.certificate{
+    position:absolute;
+    top:22%;
+    left:22%;
+}
+
+.form-container{
+   width:60%;
+   height:40%;
+   background:black;
+   position: absolute;
+   top:40%;
+   left:20%;
+   color:black;
+
+}
+
+
+.upload-button{
+display: inline-block;
+background: red;
+color: white;
+padding: 0.5rem;
+font-family: sans-serif;
+border-radius: 0.3rem;
+cursor: pointer;
+margin-top: 1rem;
+width: 300px;
+text-align: center;
+padding-top: 50px;
+padding-bottom: 50px;
+border: black 1px solid;
+
+
+}
